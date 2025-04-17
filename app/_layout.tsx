@@ -1,21 +1,59 @@
-import { Stack } from "expo-router"
-import "../global.css"
+import { Stack } from "expo-router";
+import "../global.css";
+import { TouchableOpacity } from "react-native";
+import { Feather } from "@expo/vector-icons";
 
 export default function RootLayout() {
   return (
     <Stack>
-      {/* Ocultar header en login */}
+      {/* Pantallas sin header */}
+      <Stack.Screen name="index" options={{ headerShown: false }} />
+      <Stack.Screen name="register" options={{ headerShown: false }} />
+
+      {/* Pantallas con header personalizado */}
       <Stack.Screen
-        name="index"
-        options={{ headerShown: false }}
+        name="projects"
+        options={{
+          title: "Mis proyectos",
+          headerStyle: {
+            backgroundColor: "#426CAA",
+          },
+          headerTintColor: "#fff",
+          headerTitleStyle: {
+            fontWeight: "semibold",
+          },
+          headerRight: () => (
+            <TouchableOpacity
+              onPress={() => console.log("Opciones presionadas")}
+              className="mr-4"
+            >
+              <Feather name="settings" size={24} color="white" />
+            </TouchableOpacity>
+          ),
+        }}
       />
 
-      {/* Ocultar header en register */}
       <Stack.Screen
-        name="register"
-        options={{ headerShown: false }}
+        name="boards"
+        options={{
+          title: "Mis tareas",
+          headerStyle: {
+            backgroundColor: "#426CAA",
+          },
+          headerTintColor: "#fff",
+          headerTitleStyle: {
+            fontWeight: "semibold",
+          },
+          headerRight: () => (
+            <TouchableOpacity
+              onPress={() => console.log("Opciones presionadas")}
+              className="mr-4"
+            >
+              <Feather name="settings" size={24} color="white" />
+            </TouchableOpacity>
+          ),
+        }}
       />
-
     </Stack>
   );
 }
